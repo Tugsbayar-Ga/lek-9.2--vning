@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript App</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="scrift.js"></script>
+</head>
+<body>
+
+<h1>Javascript App</h1>
+
+<!-- Text-ändring högre upp -->
+<div class="text-section">
+    <p class="text">Vi ska lägga till html-element också</p>
+    <input type="text" id="ny_text" placeholder="Skriv ny text här">
+    <button type="button" onclick="lägg_till()">Ändra Text</button>
+</div>
+
+<!-- Todo-lista -->
+<h2>Att göra</h2>
+<div class="todo-section">
+    <input type="text" id="todoInput" placeholder="Skriv en todo...">
+    <div class="buttons">
+        <button type="button" onclick="addTodo()">Lägg till</button>
+        <button type="button" onclick="removeTodo()">Ta bort</button>
+        <button type="button" onclick="removeAllTodos()">Ta bort alla</button>
+    </div>
+    <ul id="todoList"></ul>
+</div>
+
+<!-- Bakgrundsbildsknappar -->
+<div class="image-section">
+    <button type="button" onclick="byt_bild('./bild/album1.gif')">Bild 1</button>
+    <button type="button" onclick="byt_bild('./bild/album2.webp')">Bild 2</button>
+</div>
+
+<!-- Växla tema längst ner -->
+<div class="theme-section">
+    <button type="button" onclick="växla_tema()">Växla Tema</button>
+</div>
+
+</body>
+</html>
