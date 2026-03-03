@@ -54,7 +54,6 @@ h1 {
     overflow: hidden;
 }
 
-/* Responsivt */
 @media (max-width: 768px) {
     h1 { font-size: 1.5em; margin: 0 5vw 15px 5vw; }
     .buttons button, .image-section button, .theme-section button { padding: 8px 12px; font-size: 0.9em; }

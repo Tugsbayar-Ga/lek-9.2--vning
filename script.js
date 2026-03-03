@@ -11,11 +11,11 @@ const nextBtn = document.getElementById("nextBtn");
 
 const allSections = document.querySelectorAll(".text-section, .todo-section, h2, .theme-section");
 
-// Lista med bilder – lägg in dina filer i mappen "bild"
+// Lista med bilder
 const bilder = ['./bild/album1.gif', './bild/album2.webp'];
 let currentBild = 0;
 
-// --- TODO-funktioner ---
+// TODO-funktioner
 function addTodo() {
     const text = input.value.trim();
     if (!text) return;
@@ -40,15 +40,15 @@ function removeTodo() {
 function removeAllTodos() { ul.innerHTML = ""; }
 input.addEventListener("keypress", e => { if (e.key === "Enter") addTodo(); });
 
-// --- Ändra text ---
+// Ändra text
 function lägg_till() {
     if (ny_text.value.trim() !== "") { pText.textContent = ny_text.value; ny_text.value = ""; }
 }
 
-// --- Växla tema ---
+// Växla tema
 function växla_tema() { body.classList.toggle("dark_mode"); }
 
-// --- Visa bild fullscreen ---
+// Visa bild fullscreen
 function visaBild(index) {
     currentBild = index;
     body.style.backgroundImage = `url('${bilder[currentBild]}')`;
@@ -59,7 +59,7 @@ function visaBild(index) {
     nextBtn.style.display = "inline-block";
 }
 
-// --- Föregående/Nästa bild ---
+// Föregående/Nästa bild
 function föregåendeBild() { 
     currentBild = (currentBild - 1 + bilder.length) % bilder.length;
     body.style.backgroundImage = `url('${bilder[currentBild]}')`;
@@ -69,7 +69,7 @@ function nästaBild() {
     body.style.backgroundImage = `url('${bilder[currentBild]}')`;
 }
 
-// --- Gå tillbaka ---
+// Gå tillbaka
 function gåTillbaka() {
     body.style.backgroundImage = "";
     body.classList.remove("fullscreen-bg");
