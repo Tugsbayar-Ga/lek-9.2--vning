@@ -5,9 +5,9 @@ const rubrik = document.querySelector("h1");
 const pText = document.querySelector("p.text");
 const ny_text = document.getElementById("ny_text");
 const body = document.body;
-const gåTillbakaBtn = document.getElementById("gåTillbakaBtn");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
+const gåTillbaka = document.getElementById("gåTillbaka");
+const prev = document.getElementById("prev");
+const next = document.getElementById("next");
 
 const allSections = document.querySelectorAll(".text-section, .todo-section, h2, .theme-section");
 
@@ -49,14 +49,15 @@ function lägg_till() {
 function växla_tema() { body.classList.toggle("dark_mode"); }
 
 // Visa bild fullscreen
-function visaBild(index) {
+function visaBild(index) 
+{
     currentBild = index;
     body.style.backgroundImage = `url('${bilder[currentBild]}')`;
     body.classList.add("fullscreen-bg");
     allSections.forEach(sec => sec.style.display = "none");
-    gåTillbakaBtn.style.display = "inline-block";
-    prevBtn.style.display = "inline-block";
-    nextBtn.style.display = "inline-block";
+    gåTillbaka.style.display = "inline-block";
+    prev.style.display = "inline-block";
+    next.style.display = "inline-block";
 }
 
 // Föregående/Nästa bild
@@ -70,11 +71,12 @@ function nästaBild() {
 }
 
 // Gå tillbaka
-function gåTillbaka() {
+function gåTillbaka() 
+{
     body.style.backgroundImage = "";
     body.classList.remove("fullscreen-bg");
     allSections.forEach(sec => sec.style.display = "");
-    gåTillbakaBtn.style.display = "none";
-    prevBtn.style.display = "none";
-    nextBtn.style.display = "none";
+    gåTillbaka.style.display = "none";
+    prev.style.display = "none";
+    next.style.display = "none";
 }
