@@ -4,59 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Miniräknare</title>
+<link rel="stylesheet" href="style2.css">
 <link rel="stylesheet" href="style.css">
-<style>
-    .calc-wrapper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 30px;
-    }
-    .calc {
-        background: rgba(255,255,255,0.15);
-        border-radius: 16px;
-        padding: 20px;
-        width: 280px;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-    }
-    #display {
-        width: 100%;
-        box-sizing: border-box;
-        font-size: 2em;
-        text-align: right;
-        padding: 10px;
-        border: none;
-        border-radius: 8px;
-        margin-bottom: 12px;
-        background: rgba(255,255,255,0.9);
-        color: #333;
-    }
-    .calc-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 8px;
-    }
-    .calc-grid button {
-        padding: 16px 0;
-        font-size: 1.1em;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        background: rgba(255,255,255,0.8);
-        color: #333;
-        font-weight: bold;
-        transition: background 0.15s, transform 0.1s;
-    }
-    .calc-grid button:hover { background: white; transform: scale(1.05); }
-    .calc-grid button:active { transform: scale(0.97); }
-    .btn-operator { background: rgba(153,217,233,0.9) !important; color: #1a1a2e !important; }
-    .btn-equals   { background: rgba(100,180,100,0.9) !important; color: white !important; grid-column: span 2; }
-    .btn-clear    { background: rgba(220,80,80,0.85)  !important; color: white !important; grid-column: span 2; }
-    .back-section { margin-top: 20px; }
-    .dark_mode .calc { background: rgba(255,255,255,0.08); }
-    .dark_mode #display { background: rgba(255,255,255,0.15); color: white; }
-    .dark_mode .calc-grid button { background: rgba(255,255,255,0.12); color: white; }
-</style>
+<script defer src="script2.js"></script>
 </head>
 <body>
 
@@ -95,50 +45,6 @@
         <button type="button" onclick="window.location.href='index.html'">← Tillbaka</button>
     </div>
 </div>
-
-<script>
-    const display = document.getElementById("display");
-    let currentInput = "0";
-    let justCalculated = false;
-
-    function updateDisplay() { display.value = currentInput; }
-
-    function appendToDisplay(value) {
-        if (justCalculated && !isNaN(value)) {
-            currentInput = value;
-            justCalculated = false;
-        } else if (justCalculated) {
-            justCalculated = false;
-            currentInput += value;
-        } else {
-            currentInput = (currentInput === "0" && !isNaN(value)) ? value : currentInput + value;
-        }
-        updateDisplay();
-    }
-
-    function clearDisplay() { currentInput = "0"; justCalculated = false; updateDisplay(); }
-
-    function calculate() {
-        try {
-            let expr = currentInput.replace(/÷/g, '/').replace(/×/g, '*').replace(/−/g, '-');
-            let result = Function('"use strict"; return (' + expr + ')')();
-            currentInput = isFinite(result) ? parseFloat(result.toFixed(10)).toString() : "Fel";
-            justCalculated = true;
-        } catch (e) {
-            currentInput = "Fel";
-            justCalculated = true;
-        }
-        updateDisplay();
-    }
-
-    document.addEventListener("keydown", e => {
-        if (e.key >= '0' && e.key <= '9') appendToDisplay(e.key);
-        else if (['+','-','*','/','%','.'].includes(e.key)) appendToDisplay(e.key);
-        else if (e.key === 'Enter' || e.key === '=') calculate();
-        else if (e.key === 'Backspace') { currentInput = currentInput.length > 1 ? currentInput.slice(0,-1) : "0"; updateDisplay(); }
-        else if (e.key === 'Escape') clearDisplay();
-    });
-</script>
 
 </body>
 </html>

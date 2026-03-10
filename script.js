@@ -52,7 +52,6 @@ function lägg_till() {
 function växla_tema() { body.classList.toggle("dark_mode"); }
 
 // ── BILDER ────────────────────────────────────────
-// Bild 1 (index 0) och Bild 2 (index 1) fungerar nu exakt likadant
 function visaBild(index) {
     currentBild = index;
     body.style.backgroundImage = `url('${bilder[currentBild]}')`;
