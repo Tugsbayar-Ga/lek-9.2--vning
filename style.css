@@ -14,7 +14,7 @@ h1 {
     padding: 10px;
 }
 
-.text-section, .todo-section, .image-section, .theme-section {
+.text-section, .todo-section, .image-section, .theme-section, .link-section {
     margin-bottom: 30px;
 }
 
@@ -24,7 +24,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-.buttons button, .image-section button, .theme-section button {
+.buttons button, .image-section button, .theme-section button, .link-section button {
     margin: 5px;
     padding: 5px 10px;
 }

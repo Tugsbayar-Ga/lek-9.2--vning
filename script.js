@@ -1,21 +1,20 @@
 // Elementreferenser
 const input = document.getElementById("todoInput");
 const ul = document.getElementById("todoList");
-const rubrik = document.querySelector("h1");
 const pText = document.querySelector("p.text");
 const ny_text = document.getElementById("ny_text");
 const body = document.body;
-const gåTillbaka = document.getElementById("gåTillbaka");
-const prev = document.getElementById("prev");
-const next = document.getElementById("next");
+const föreBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const tillbakaBtn = document.getElementById("gåTillbakaBtn");
 
-const allSections = document.querySelectorAll(".text-section, .todo-section, h2, .theme-section");
+const allSections = document.querySelectorAll(".text-section, .todo-section, h2, .theme-section, .link-section");
 
-// Lista med bilder
+// Lista med bilder - index 0 = bild 1, index 1 = bild 2
 const bilder = ['./bild/album1.gif', './bild/album2.webp'];
 let currentBild = 0;
 
-// TODO-funktioner
+// ── TODO ──────────────────────────────────────────
 function addTodo() {
     const text = input.value.trim();
     if (!text) return;
@@ -38,45 +37,47 @@ function removeTodo() {
 }
 
 function removeAllTodos() { ul.innerHTML = ""; }
+
 input.addEventListener("keypress", e => { if (e.key === "Enter") addTodo(); });
 
-// Ändra text
+// ── TEXT ──────────────────────────────────────────
 function lägg_till() {
-    if (ny_text.value.trim() !== "") { pText.textContent = ny_text.value; ny_text.value = ""; }
+    if (ny_text.value.trim() !== "") {
+        pText.textContent = ny_text.value;
+        ny_text.value = "";
+    }
 }
 
-// Växla tema
+// ── TEMA ──────────────────────────────────────────
 function växla_tema() { body.classList.toggle("dark_mode"); }
 
-// Visa bild fullscreen
-function visaBild(index) 
-{
+// ── BILDER ────────────────────────────────────────
+// Bild 1 (index 0) och Bild 2 (index 1) fungerar nu exakt likadant
+function visaBild(index) {
     currentBild = index;
     body.style.backgroundImage = `url('${bilder[currentBild]}')`;
     body.classList.add("fullscreen-bg");
     allSections.forEach(sec => sec.style.display = "none");
-    gåTillbaka.style.display = "inline-block";
-    prev.style.display = "inline-block";
-    next.style.display = "inline-block";
+    tillbakaBtn.style.display = "inline-block";
+    föreBtn.style.display    = "inline-block";
+    nextBtn.style.display    = "inline-block";
 }
 
-// Föregående/Nästa bild
-function föregåendeBild() { 
+function föregåendeBild() {
     currentBild = (currentBild - 1 + bilder.length) % bilder.length;
     body.style.backgroundImage = `url('${bilder[currentBild]}')`;
 }
-function nästaBild() { 
+
+function nästaBild() {
     currentBild = (currentBild + 1) % bilder.length;
     body.style.backgroundImage = `url('${bilder[currentBild]}')`;
 }
 
-// Gå tillbaka
-function gåTillbaka() 
-{
+function gåTillbaka() {
     body.style.backgroundImage = "";
     body.classList.remove("fullscreen-bg");
     allSections.forEach(sec => sec.style.display = "");
-    gåTillbaka.style.display = "none";
-    prev.style.display = "none";
-    next.style.display = "none";
+    tillbakaBtn.style.display = "none";
+    föreBtn.style.display    = "none";
+    nextBtn.style.display    = "none";
 }
